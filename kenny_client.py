@@ -17,11 +17,9 @@ HOST = '149.171.36.192'
 PORT = 8189
 
 Sr = 1
-Pr = 10
+Pr = 12
 # '!' -> Network format which is Big-Endian; 'I' -> Unsigned integer which is 4 bytes long
-message_byte = pack('!II', Sr, Pr) 
-
-snoop_request = message_byte
+snoop_request = pack('!II', Sr, Pr) 
 print(snoop_request)
 
 print('1. Creating socket')
