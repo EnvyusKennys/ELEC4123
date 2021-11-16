@@ -45,17 +45,14 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         #s.sendall(snoop_request)
         print('Enter While Loop!')
         data = s.recv(1024)
-        print('Received:', data)
         if len(data) <= 0:
             break
         if not data:
             break
-        # decode the data with utf-8
-        data_decoded = data.decode('utf-8')
+        # Hex the data
         data_hex = data.hex()
-        # print the data
+        # Print the data
         print('Received:', data)
-        print('Decoded: ', data_decoded)
         print('Hex Data: ', data_hex)
         #time.sleep(1)
 
