@@ -16,23 +16,10 @@ import requests
 HOST = '149.171.36.192'
 PORT = 8189
 
-# message_byte = bytes('Sr', 'utf-8')
-
-# Sr = '0000000000110010'
-# Pr = '0000000000110010'
-# Sr = '1100100000000000'
-# Pr = '1100100000000000'
-# message_byte = (Sr + Pr).encode()
-
-# message_byte = bytes('0010' + '0010', 'utf-8')
-# message_byte = b'\x35\x35\x35\x35\x35\x35\x35\x35'
-
+Sr = 1
+Pr = 10
 # '!' -> Network format which is Big-Endian; 'I' -> Unsigned integer which is 4 bytes long
-message_byte = pack('!II', 1, 100) 
-
-# Sr = 1
-# Pr = 50
-# message_byte = Sr.to_bytes(4, 'big') + Pr.to_bytes(4, 'big')
+message_byte = pack('!II', Sr, Pr) 
 
 snoop_request = message_byte
 print(snoop_request)
@@ -41,7 +28,6 @@ print('1. Creating socket')
 # AF_INET -> IPv4, SOCK_DGRAM -> UDP
 with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
     print('2. Connecting to the server')
-    #s.connect((HOST, PORT))
     try:
         s.connect((HOST,PORT))
         print('Socket connected.')
@@ -59,7 +45,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         #s.sendall(snoop_request)
         print('Enter While Loop!')
         data = s.recv(1024)
-        print('Data Received!')
         print('Received:', data)
         if len(data) <= 0:
             break
