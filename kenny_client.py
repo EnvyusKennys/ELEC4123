@@ -35,7 +35,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         print('Socket failed.')
 
     print('3. Sending message: ' + str(snoop_request) + ' to the server')
-    #s.send(snoop_request.encode('utf-8'))
+    #s.send(snoop_request)
     #for i in range(1,100):
     s.sendall(snoop_request)
     #s.sendto(snoop_request, (HOST, PORT))
