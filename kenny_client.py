@@ -10,6 +10,7 @@ import time
 from struct import*
 import select
 import random
+from typing import final
 import requests
 
 # The server's IP address and port number
@@ -27,6 +28,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         print('----- Socket Connection Failed! -----')
 
     print('3. Sending snoop request & Receiving message from the server.')
+    #Sr = 13
     Sr = 1
     Pr = 1
     Pr_l = []
@@ -54,7 +56,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
             Pr_l.append(rec_pr)
         # Store received messages in a dictionary [key: msg_identifier, value: msg]
         msg_iden = res_hex[8:16]
-        msg = res_hex[16:]
+        #msg = res_hex[16:]
+        msg = res[8:]
         if msg in msg_dict.values():
             print('----- All Message Received! -----')
             # Print responses
@@ -83,5 +86,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
     except:
         print('----- Socket Closing Failed! -----')
 
+    final_msg = ''
+    for key in sorted(msg_dict):
+        final_msg = final_msg + msg_dict[key].decode('utf-8')
+    
     print(Pr_l)
     print(msg_dict)
+    print(final_msg)
