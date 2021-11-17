@@ -16,11 +16,11 @@ import requests
 HOST = '149.171.36.192'
 PORT = 8189
 
-Sr = 1
-Pr = 12
 # '!' -> Network format which is Big-Endian; 'I' -> Unsigned integer which is 4 bytes long
-snoop_request = pack('!II', Sr, Pr) 
-print(snoop_request)
+# Sr = 1
+# Pr = 12
+# snoop_request = pack('!II', Sr, Pr) 
+# print(snoop_request)
 
 print('1. Creating socket')
 # AF_INET -> IPv4, SOCK_DGRAM -> UDP
@@ -32,27 +32,29 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
     except s.error as err:
         print('Socket failed.')
 
-    print('3. Sending message: ' + str(snoop_request) + ' to the server')
-    #s.send(snoop_request)
-    #for i in range(1,100):
-    s.sendall(snoop_request)
-    #s.sendto(snoop_request, (HOST, PORT))
+    # print('3. Sending message: ' + str(snoop_request) + ' to the server')
+    # s.sendall(snoop_request)
 
     print('4. Receiving message from the server')
-    while True: 
-        #s.sendall(snoop_request)
+    Sr = 1
+    for Pr in range(1,11):
         print('Enter While Loop!')
+        snoop_request = pack('!II', Sr, Pr) 
+        s.sendall(snoop_request)
         data = s.recv(1024)
-        if len(data) <= 0:
-            break
-        if not data:
-            break
+        # if len(data) <= 0:
+        #     break
+        # if not data:
+        #     break
         # Hex the data
         data_hex = data.hex()
         # Print the data
         print('Received:', data)
         print('Hex Data: ', data_hex)
-        #time.sleep(1)
+        print('Pr: ', data_hex[0:8])
+        print('Msg Identifier: ', data_hex[8:16])
+        print('Actual Msg: ', data_hex[16:])
+        time.sleep(2)
 
     print('5. Closing the socket')
     s.close()
