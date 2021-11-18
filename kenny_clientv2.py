@@ -45,8 +45,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         res = s.recv(1024)
         res_hex = res.hex()
         # Get the same message for at least 5 times
-        if '\x04' in res:
+        if res_hex.endswith('04'):
             if ctrl_d == 5:
+                print('----- Five [\x04] received, Break For-loop! ------\n')
                 break
             else:
                 ctrl_d+=1
