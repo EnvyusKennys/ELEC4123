@@ -28,16 +28,15 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         print('----- Socket Connection Failed! -----')
 
     print('3. Sending snoop request & Receiving message from the server.')
-    #Sr = 13
-    Sr = 1
-    Pr = 1
+    Sr = 19
+    #Sr = 1
     Pr_l = []
-    iden_l = []
-    iden_int = []
-    res_len = []
+    id_l = []
+    id_l_int = []
+    msg_len_l = []
     msg_dict = {}
-    # Send snoope request then get the hex of the response
-    while True:
+    # Send snoope request with differnt [Pr] to get differnt responses
+    for Pr in range(1,100):
         # '!' -> Netwrok format which is Big-Endian; 'I' Unsigned integer which is 4 bytes each
         print(f'----- Receiving Message Pr No. [{Pr}] -----')
         snoop_request = pack('!II', Sr, Pr) 
@@ -48,7 +47,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         # Get rid of duplicate response base on received Pr
         rec_pr = res_hex[0:8]
         if rec_pr in Pr_l:
-            Pr+=1
             print('----- Duplicate Pr Received! -----')
             print('Duplicate Meassge Received:', res)
             print('Hex res:', res_hex)
@@ -61,12 +59,12 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
             Pr_l.append(rec_pr)
         
         # Store received messages in a dictionary [key: msg_identifier, value: msg]
-        msg_iden = res_hex[8:16]
         #msg = res_hex[16:]
         msg = res[8:]
+        msg_len = len(msg)
+        msg_id = res_hex[8:16]
         if msg in msg_dict.values():
             print('----- All Message Received! -----')
-            # Print responses
             print('Last Meassge Received:', res)
             print('Hex res:', res_hex)
             print('Pr:', res_hex[0:8])
@@ -74,10 +72,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
             print('Actual Msg:', res_hex[16:], '\n')
             break
         else:
-            iden_l.append(msg_iden)
-            iden_int.append(int(msg_iden,16))
-            res_len.append(len(msg))
-            msg_dict[msg_iden] = msg
+            id_l.append(msg_id)
+            id_l_int.append(int(msg_id,16))
+            msg_len_l.append(len(msg))
+            msg_dict[msg_id] = msg
         
         # Print responses
         print('Received:', res)
@@ -85,9 +83,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         print('Pr:', res_hex[0:8])
         print('Msg Identifier:', res_hex[8:16])
         print('Actual Msg:', res_hex[16:], '\n')
-        # Incrementing Pr to get differnt responses
-        Pr+=1
-        time.sleep(0.1)
+        #time.sleep(0.1)
 
     print('5. Closing the socket.')
     try:
@@ -101,8 +97,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         final_msg = final_msg + msg_dict[key].decode('utf-8')
 
     print('Pr list:', Pr_l)
-    print('Lengh of message:', res_len)
-    print('Message ID list:', iden_l)
-    print('Message ID list int format:', iden_int)
+    print('Lengh of messages:', msg_len_l)
+    print('Message ID list:', id_l)
+    print('Message ID list int format:', id_l_int)
     print('Message dictionary:', msg_dict)
     print('Final message:', final_msg)
