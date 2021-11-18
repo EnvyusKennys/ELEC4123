@@ -28,15 +28,16 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         print('----- Socket Connection Failed! -----')
 
     print('3. Sending snoop request & Receiving message from the server.')
-    Sr = 13
-    #Sr = 1
+    #Sr = 13
+    Sr = 1
     Pr = 1
     Pr_l = []
+    iden_l = []
     msg_dict = {}
     # Send snoope request then get the hex of the response
     while True:
         # '!' -> Netwrok format which is Big-Endian; 'I' Unsigned integer which is 4 bytes each
-        print(f'----- Receiving Message No. [{Pr}] -----')
+        print(f'----- Receiving Message Pr No. [{Pr}] -----')
         snoop_request = pack('!II', Sr, Pr) 
         s.sendall(snoop_request)
         res = s.recv(1024)
@@ -52,7 +53,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
             print('Pr:', res_hex[0:8])
             print('Msg Identifier:', res_hex[8:16])
             print('Actual Msg:', res_hex[16:], '\n')
-            #time.sleep(1)
+            time.sleep(0.1)
             continue
         else:
             Pr_l.append(rec_pr)
@@ -71,6 +72,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
             print('Actual Msg:', res_hex[16:], '\n')
             break
         else:
+            iden_l.append(msg_iden)
             msg_dict[msg_iden] = msg
         
         # Print responses
@@ -81,7 +83,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         print('Actual Msg:', res_hex[16:], '\n')
         # Incrementing Pr to get differnt responses
         Pr+=1
-        #time.sleep(1)
+        time.sleep(0.1)
 
     print('5. Closing the socket.')
     try:
@@ -94,6 +96,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
     for key in sorted(msg_dict):
         final_msg = final_msg + msg_dict[key].decode('utf-8')
 
-    print(Pr_l)
-    print(msg_dict)
-    print(final_msg)
+    print('Pr list:', Pr_l)
+    print('Message ID list:',iden_l)
+    print('Message dictionary:',msg_dict)
+    print('Final message:',final_msg)
