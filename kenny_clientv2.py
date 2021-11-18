@@ -30,7 +30,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
     print('3. Sending snoop request & Receiving message from the server.')
     Sr = 19
     #Sr = 1
-    ctrl_d = 0
+    msg_repeated = 0
     Pr_l = []
     id_l = []
     id_l_int = []
@@ -46,11 +46,11 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         res_hex = res.hex()
         # Get the same message for at least 5 times
         if res_hex.endswith('04'):
-            if ctrl_d == 5:
+            if msg_repeated == 5:
                 print('----- Five [\x04] received, Break For-loop! ------\n')
                 break
             else:
-                ctrl_d+=1
+                msg_repeated+=1
 
         # Get rid of duplicate response base on received Pr
         rec_pr = res_hex[0:8]
