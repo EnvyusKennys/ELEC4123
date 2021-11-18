@@ -76,9 +76,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         else:
             iden_l.append(msg_iden)
             iden_int.append(int(msg_iden,16))
-            res_len.append(len(res))
+            res_len.append(len(msg))
             msg_dict[msg_iden] = msg
-
         
         # Print responses
         print('Received:', res)
@@ -102,7 +101,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         final_msg = final_msg + msg_dict[key].decode('utf-8')
 
     print('Pr list:', Pr_l)
-    print('Lengh of Responses:', res_len)
+    print('Lengh of message:', res_len)
     print('Message ID list:', iden_l)
     print('Message ID list int format:', iden_int)
     print('Message dictionary:', msg_dict)
