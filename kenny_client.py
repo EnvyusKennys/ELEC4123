@@ -28,18 +28,20 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         print('----- Socket Connection Failed! -----')
 
     print('3. Sending snoop request & Receiving message from the server.')
-    #Sr = 13
-    Sr = 1
+    Sr = 13
+    #Sr = 1
     Pr = 1
     Pr_l = []
     msg_dict = {}
+    # Send snoope request then get the hex of the response
     while True:
-        # Send snoope request then get the hex of the response
+        # '!' -> Netwrok format which is Big-Endian; 'I' Unsigned integer which is 4 bytes each
         print(f'----- Receiving Message No. [{Pr}] -----')
         snoop_request = pack('!II', Sr, Pr) 
         s.sendall(snoop_request)
         res = s.recv(1024)
         res_hex = res.hex()
+
         # Get rid of duplicate response base on received Pr
         rec_pr = res_hex[0:8]
         if rec_pr in Pr_l:
@@ -50,10 +52,11 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
             print('Pr:', res_hex[0:8])
             print('Msg Identifier:', res_hex[8:16])
             print('Actual Msg:', res_hex[16:], '\n')
-            time.sleep(1)
+            #time.sleep(1)
             continue
         else:
             Pr_l.append(rec_pr)
+        
         # Store received messages in a dictionary [key: msg_identifier, value: msg]
         msg_iden = res_hex[8:16]
         #msg = res_hex[16:]
@@ -69,6 +72,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
             break
         else:
             msg_dict[msg_iden] = msg
+        
         # Print responses
         print('Received:', res)
         print('Hex res:', res_hex)
@@ -77,7 +81,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         print('Actual Msg:', res_hex[16:], '\n')
         # Incrementing Pr to get differnt responses
         Pr+=1
-        time.sleep(1)
+        #time.sleep(1)
 
     print('5. Closing the socket.')
     try:
@@ -89,7 +93,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
     final_msg = ''
     for key in sorted(msg_dict):
         final_msg = final_msg + msg_dict[key].decode('utf-8')
-    
+
     print(Pr_l)
     print(msg_dict)
     print(final_msg)
