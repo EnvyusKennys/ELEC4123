@@ -33,6 +33,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
     Pr = 1
     Pr_l = []
     iden_l = []
+    iden_int = []
+    res_len = []
     msg_dict = {}
     # Send snoope request then get the hex of the response
     while True:
@@ -73,7 +75,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
             break
         else:
             iden_l.append(msg_iden)
+            iden_int.append(int(msg_iden,16))
+            res_len.append(len(res))
             msg_dict[msg_iden] = msg
+
         
         # Print responses
         print('Received:', res)
@@ -97,6 +102,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         final_msg = final_msg + msg_dict[key].decode('utf-8')
 
     print('Pr list:', Pr_l)
-    print('Message ID list:',iden_l)
-    print('Message dictionary:',msg_dict)
-    print('Final message:',final_msg)
+    print('Lengh of Responses:', res_len)
+    print('Message ID list:', iden_l)
+    print('Message ID list int format:', iden_int)
+    print('Message dictionary:', msg_dict)
+    print('Final message:', final_msg)
