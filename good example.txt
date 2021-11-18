@@ -1,0 +1,321 @@
+yoken21@KennyPC:/mnt/c/Users/kenny/OneDrive - UNSW/Year4 - 2021/T3/ELEC4123 - DP/Topic 4 - Elective Topic/ELEC4123$ python3 kenny_clientv2.py
+1. Creating socket.
+2. Connecting to the server.
+----- Socket Connected! -----
+3. Sending snoop request & Receiving message from the server.
+----- Receiving Message Pr No. [1] -----
+Received: b'\x00\x00\x00\x01\x00\x00\x00\xccHello worl'
+Hex res: 00000001000000cc48656c6c6f20776f726c
+Pr: 00000001
+Msg Identifier: 000000cc
+Actual Msg: 48656c6c6f20776f726c
+
+----- Receiving Message Pr No. [2] -----
+----- Duplicate Pr Received! -----
+Duplicate Meassge Received: b'\x00\x00\x00\x01\x00\x00\x00\xccHello worl'
+Hex res: 00000001000000cc48656c6c6f20776f726c
+Pr: 00000001
+Msg Identifier: 000000cc
+Actual Msg: 48656c6c6f20776f726c
+
+----- Receiving Message Pr No. [3] -----
+----- Duplicate Message! -----
+Last Meassge Received: b'\x00\x00\x00\x02\x00\x00\x00\xe1Hello worl'
+Hex res: 00000002000000e148656c6c6f20776f726c
+Pr: 00000002
+Msg Identifier: 000000e1
+Actual Msg: 48656c6c6f20776f726c
+
+----- Receiving Message Pr No. [4] -----
+----- Duplicate Pr Received! -----
+Duplicate Meassge Received: b'\x00\x00\x00\x02\x00\x00\x00\xe1Hello worl'
+Hex res: 00000002000000e148656c6c6f20776f726c
+Pr: 00000002
+Msg Identifier: 000000e1
+Actual Msg: 48656c6c6f20776f726c
+
+----- Receiving Message Pr No. [5] -----
+Received: b'\x00\x00\x00\x03\x00\x00\x00\xf4ency cour'
+Hex res: 00000003000000f4656e637920636f7572
+Pr: 00000003
+Msg Identifier: 000000f4
+Actual Msg: 656e637920636f7572
+
+----- Receiving Message Pr No. [6] -----
+----- Duplicate Pr Received! -----
+Duplicate Meassge Received: b'\x00\x00\x00\x03\x00\x00\x00\xf4ency cour'
+Hex res: 00000003000000f4656e637920636f7572
+Pr: 00000003
+Msg Identifier: 000000f4
+Actual Msg: 656e637920636f7572
+
+----- Receiving Message Pr No. [7] -----
+Received: b'\x00\x00\x00\x04\x00\x00\x01\x07s is a'
+Hex res: 0000000400000107732069732061
+Pr: 00000004
+Msg Identifier: 00000107
+Actual Msg: 732069732061
+
+----- Receiving Message Pr No. [8] -----
+----- Duplicate Pr Received! -----
+Duplicate Meassge Received: b'\x00\x00\x00\x04\x00\x00\x01\x07s is a'
+Hex res: 0000000400000107732069732061
+Pr: 00000004
+Msg Identifier: 00000107
+Actual Msg: 732069732061
+
+----- Receiving Message Pr No. [9] -----
+Received: b'\x00\x00\x00\x06\x00\x00\x01\x1ad, ho'
+Hex res: 000000060000011a642c20686f
+Pr: 00000006
+Msg Identifier: 0000011a
+Actual Msg: 642c20686f
+
+----- Receiving Message Pr No. [10] -----
+----- Duplicate Pr Received! -----
+Duplicate Meassge Received: b'\x00\x00\x00\x06\x00\x00\x01\x1ad, ho'
+Hex res: 000000060000011a642c20686f
+Pr: 00000006
+Msg Identifier: 0000011a
+Actual Msg: 642c20686f
+
+----- Receiving Message Pr No. [11] -----
+Received: b'\x00\x00\x00\x08\x00\x00\x01-se.\x04'
+Hex res: 000000080000012d73652e04
+Pr: 00000008
+Msg Identifier: 0000012d
+Actual Msg: 73652e04
+
+----- Receiving Message Pr No. [12] -----
+----- Duplicate Pr Received! -----
+Duplicate Meassge Received: b'\x00\x00\x00\x08\x00\x00\x01-se.\x04'
+Hex res: 000000080000012d73652e04
+Pr: 00000008
+Msg Identifier: 0000012d
+Actual Msg: 73652e04
+
+----- Receiving Message Pr No. [13] -----
+Received: b'\x00\x00\x00\n\x00\x00\x01@ design profici'
+Hex res: 0000000a000001402064657369676e2070726f66696369
+Pr: 0000000a
+Msg Identifier: 00000140
+Actual Msg: 2064657369676e2070726f66696369
+
+----- Receiving Message Pr No. [14] -----
+----- Duplicate Pr Received! -----
+Duplicate Meassge Received: b'\x00\x00\x00\n\x00\x00\x01@ design profici'
+Hex res: 0000000a000001402064657369676e2070726f66696369
+Pr: 0000000a
+Msg Identifier: 00000140
+Actual Msg: 2064657369676e2070726f66696369
+
+----- Receiving Message Pr No. [15] -----
+Received: b'\x00\x00\x00\x0c\x00\x00\x01Sw are you? Thi'
+Hex res: 0000000c00000153772061726520796f753f20546869
+Pr: 0000000c
+Msg Identifier: 00000153
+Actual Msg: 772061726520796f753f20546869
+
+----- Receiving Message Pr No. [16] -----
+----- Duplicate Pr Received! -----
+Duplicate Meassge Received: b'\x00\x00\x00\x0c\x00\x00\x01Sw are you? Thi'
+Hex res: 0000000c00000153772061726520796f753f20546869
+Pr: 0000000c
+Msg Identifier: 00000153
+Actual Msg: 772061726520796f753f20546869
+
+----- Receiving Message Pr No. [17] -----
+----- Duplicate Message! -----
+Last Meassge Received: b'\x00\x00\x00\x0e\x00\x00\x01fHello worl'
+Hex res: 0000000e0000016648656c6c6f20776f726c
+Pr: 0000000e
+Msg Identifier: 00000166
+Actual Msg: 48656c6c6f20776f726c
+
+----- Receiving Message Pr No. [18] -----
+----- Duplicate Pr Received! -----
+Duplicate Meassge Received: b'\x00\x00\x00\x0e\x00\x00\x01fHello worl'
+Hex res: 0000000e0000016648656c6c6f20776f726c
+Pr: 0000000e
+Msg Identifier: 00000166
+Actual Msg: 48656c6c6f20776f726c
+
+----- Receiving Message Pr No. [19] -----
+----- Duplicate Message! -----
+Last Meassge Received: b'\x00\x00\x00\x10\x00\x00\x01yency cour'
+Hex res: 0000001000000179656e637920636f7572
+Pr: 00000010
+Msg Identifier: 00000179
+Actual Msg: 656e637920636f7572
+
+----- Receiving Message Pr No. [20] -----
+----- Duplicate Pr Received! -----
+Duplicate Meassge Received: b'\x00\x00\x00\x10\x00\x00\x01yency cour'
+Hex res: 0000001000000179656e637920636f7572
+Pr: 00000010
+Msg Identifier: 00000179
+Actual Msg: 656e637920636f7572
+
+----- Receiving Message Pr No. [21] -----
+----- Duplicate Message! -----
+Last Meassge Received: b'\x00\x00\x00\x12\x00\x00\x01\x8cs is a'
+Hex res: 000000120000018c732069732061
+Pr: 00000012
+Msg Identifier: 0000018c
+Actual Msg: 732069732061
+
+----- Receiving Message Pr No. [22] -----
+----- Duplicate Pr Received! -----
+Duplicate Meassge Received: b'\x00\x00\x00\x12\x00\x00\x01\x8cs is a'
+Hex res: 000000120000018c732069732061
+Pr: 00000012
+Msg Identifier: 0000018c
+Actual Msg: 732069732061
+
+----- Receiving Message Pr No. [23] -----
+----- Duplicate Message! -----
+Last Meassge Received: b'\x00\x00\x00\x14\x00\x00\x01\x9fd, ho'
+Hex res: 000000140000019f642c20686f
+Pr: 00000014
+Msg Identifier: 0000019f
+Actual Msg: 642c20686f
+
+----- Receiving Message Pr No. [24] -----
+----- Duplicate Pr Received! -----
+Duplicate Meassge Received: b'\x00\x00\x00\x14\x00\x00\x01\x9fd, ho'
+Hex res: 000000140000019f642c20686f
+Pr: 00000014
+Msg Identifier: 0000019f
+Actual Msg: 642c20686f
+
+----- Receiving Message Pr No. [25] -----
+----- Duplicate Message! -----
+Last Meassge Received: b'\x00\x00\x00\x16\x00\x00\x01\xb2se.\x04'
+Hex res: 00000016000001b273652e04
+Pr: 00000016
+Msg Identifier: 000001b2
+Actual Msg: 73652e04
+
+----- Receiving Message Pr No. [26] -----
+----- Duplicate Pr Received! -----
+Duplicate Meassge Received: b'\x00\x00\x00\x16\x00\x00\x01\xb2se.\x04'
+Hex res: 00000016000001b273652e04
+Pr: 00000016
+Msg Identifier: 000001b2
+Actual Msg: 73652e04
+
+----- Receiving Message Pr No. [27] -----
+----- Duplicate Message! -----
+Last Meassge Received: b'\x00\x00\x00\x18\x00\x00\x01\xc5 design profici'
+Hex res: 00000018000001c52064657369676e2070726f66696369
+Pr: 00000018
+Msg Identifier: 000001c5
+Actual Msg: 2064657369676e2070726f66696369
+
+----- Receiving Message Pr No. [28] -----
+----- Duplicate Pr Received! -----
+Duplicate Meassge Received: b'\x00\x00\x00\x18\x00\x00\x01\xc5 design profici'
+Hex res: 00000018000001c52064657369676e2070726f66696369
+Pr: 00000018
+Msg Identifier: 000001c5
+Actual Msg: 2064657369676e2070726f66696369
+
+----- Receiving Message Pr No. [29] -----
+----- Duplicate Message! -----
+Last Meassge Received: b'\x00\x00\x00\x1a\x00\x00\x01\xd8w are you? Thi'
+Hex res: 0000001a000001d8772061726520796f753f20546869
+Pr: 0000001a
+Msg Identifier: 000001d8
+Actual Msg: 772061726520796f753f20546869
+
+----- Receiving Message Pr No. [30] -----
+----- Duplicate Pr Received! -----
+Duplicate Meassge Received: b'\x00\x00\x00\x1a\x00\x00\x01\xd8w are you? Thi'
+Hex res: 0000001a000001d8772061726520796f753f20546869
+Pr: 0000001a
+Msg Identifier: 000001d8
+Actual Msg: 772061726520796f753f20546869
+
+----- Receiving Message Pr No. [31] -----
+----- Duplicate Message! -----
+Last Meassge Received: b'\x00\x00\x00\x1c\x00\x00\x01\xebHello worl'
+Hex res: 0000001c000001eb48656c6c6f20776f726c
+Pr: 0000001c
+Msg Identifier: 000001eb
+Actual Msg: 48656c6c6f20776f726c
+
+----- Receiving Message Pr No. [32] -----
+----- Duplicate Pr Received! -----
+Duplicate Meassge Received: b'\x00\x00\x00\x1c\x00\x00\x01\xebHello worl'
+Hex res: 0000001c000001eb48656c6c6f20776f726c
+Pr: 0000001c
+Msg Identifier: 000001eb
+Actual Msg: 48656c6c6f20776f726c
+
+----- Receiving Message Pr No. [33] -----
+----- Duplicate Message! -----
+Last Meassge Received: b'\x00\x00\x00\x1e\x00\x00\x01\xfeency cour'
+Hex res: 0000001e000001fe656e637920636f7572
+Pr: 0000001e
+Msg Identifier: 000001fe
+Actual Msg: 656e637920636f7572
+
+----- Receiving Message Pr No. [34] -----
+----- Duplicate Pr Received! -----
+Duplicate Meassge Received: b'\x00\x00\x00\x1e\x00\x00\x01\xfeency cour'
+Hex res: 0000001e000001fe656e637920636f7572
+Pr: 0000001e
+Msg Identifier: 000001fe
+Actual Msg: 656e637920636f7572
+
+----- Receiving Message Pr No. [35] -----
+----- Duplicate Message! -----
+Last Meassge Received: b'\x00\x00\x00 \x00\x00\x02\x11s is a'
+Hex res: 0000002000000211732069732061
+Pr: 00000020
+Msg Identifier: 00000211
+Actual Msg: 732069732061
+
+----- Receiving Message Pr No. [36] -----
+----- Duplicate Pr Received! -----
+Duplicate Meassge Received: b'\x00\x00\x00 \x00\x00\x02\x11s is a'
+Hex res: 0000002000000211732069732061
+Pr: 00000020
+Msg Identifier: 00000211
+Actual Msg: 732069732061
+
+----- Receiving Message Pr No. [37] -----
+----- Duplicate Message! -----
+Last Meassge Received: b'\x00\x00\x00"\x00\x00\x02$d, ho'
+Hex res: 0000002200000224642c20686f
+Pr: 00000022
+Msg Identifier: 00000224
+Actual Msg: 642c20686f
+
+----- Receiving Message Pr No. [38] -----
+----- Duplicate Pr Received! -----
+Duplicate Meassge Received: b'\x00\x00\x00"\x00\x00\x02$d, ho'
+Hex res: 0000002200000224642c20686f
+Pr: 00000022
+Msg Identifier: 00000224
+Actual Msg: 642c20686f
+
+----- Receiving Message Pr No. [39] -----
+----- Duplicate Message! -----
+Last Meassge Received: b'\x00\x00\x00$\x00\x00\x027se.\x04'
+Hex res: 000000240000023773652e04
+Pr: 00000024
+Msg Identifier: 00000237
+Actual Msg: 73652e04
+
+----- Receiving Message Pr No. [40] -----
+----- Five [] received, Break For-loop! ------
+
+5. Closing the socket.
+----- Socket Closed! -----
+Pr list: ['00000001', '00000002', '00000003', '00000004', '00000006', '00000008', '0000000a', '0000000c', '0000000e', '00000010', '00000012', '00000014', '00000016', '00000018', '0000001a', '0000001c', '0000001e', '00000020', '00000022', '00000024']
+Lengh of messages: [10, 9, 6, 5, 4, 15, 14]
+Message ID list: ['000000cc', '000000f4', '00000107', '0000011a', '0000012d', '00000140', '00000153']
+Message ID list int format: [204, 244, 263, 282, 301, 320, 339]
+Message dictionary: {'000000cc': b'Hello worl', '000000f4': b'ency cour', '00000107': b's is a', '0000011a': b'd, ho', '0000012d': b'se.\x04', '00000140': b' design profici', '00000153': b'w are you? Thi'}
+Final message: Hello worlency cours is ad, hose. design proficiw are you? Thi
