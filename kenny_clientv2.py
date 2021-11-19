@@ -5,9 +5,7 @@ ELEC4123 DP - Network Task Client
 >>> Guxi Liu (z5210591)
 >>> Jun Han (z5206270)
 '''
-import time
 import socket
-import requests
 from struct import*
 
 # The server's IP address and port number
@@ -26,7 +24,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
 
     print('3. Sending snoop request & Receiving message from the server.')
     Sr = 19
-    #Sr = 1
     msg_repeated = 0
     Pr_l = []
     id_l = []
@@ -58,13 +55,11 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
             print('Pr:', res_hex[0:8])
             print('Msg Identifier:', res_hex[8:16])
             print('Actual Msg:', res_hex[16:], '\n')
-            #time.sleep(0.1)
             continue
         else:
             Pr_l.append(rec_pr)
         
         # Store received messages in a dictionary [key: msg_identifier, value: msg]
-        #msg = res_hex[16:]
         msg = res[8:]
         msg_len = len(msg)
         msg_id = res_hex[8:16]
@@ -88,7 +83,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         print('Pr:', res_hex[0:8])
         print('Msg Identifier:', res_hex[8:16])
         print('Actual Msg:', res_hex[16:], '\n')
-        #time.sleep(0.1)
 
     print('5. Closing the socket.')
     try:
@@ -97,9 +91,21 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
     except:
         print('----- Socket Closing Failed! -----')
 
+    # Mod [msg_id] with [whole_message_length] to get the position of the this msg
+    # Msg_position is a dictionary with [key: msg_position, value: msg_id]
+    msg_position = {}
+    whole_msg_len = len(msg_dict)
+    for id in msg_dict.keys():
+        msg_id_int = int(id,16)
+        mod_id = msg_id_int%whole_msg_len
+        if mod_id == 0:
+            mod_id = whole_msg_len
+        msg_position[mod_id] = id
+
     final_msg = ''
-    for key in sorted(msg_dict):
-        final_msg = final_msg + msg_dict[key].decode('utf-8')
+    for position in sorted(msg_position):
+        original_id = msg_position[position]
+        final_msg = final_msg + msg_dict[original_id].decode('utf-8')
 
     print('Pr list:', Pr_l)
     print('Lengh of messages:', msg_len_l)

@@ -28,7 +28,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         print('----- Socket Connection Failed! -----')
 
     print('3. Sending snoop request & Receiving message from the server.')
-    Sr = 19
+    Sr = 15
     #Sr = 1
     msg_repeated = 0
     Pr_l = []
