@@ -46,7 +46,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         res_hex = res.hex()
         # Get the same message for at least 5 times
         if res_hex.endswith('04'):
-            if msg_repeated == 5:
+            if msg_repeated == 10:
                 print('----- Five [\x04] received, Break For-loop! ------\n')
                 break
             else:
@@ -56,34 +56,34 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         rec_pr = res_hex[0:8]
         if rec_pr in Pr_l:
             print('----- Duplicate Pr Received! -----')
-            print('Duplicate Meassge Received:', res)
-            print('Hex res:', res_hex)
-            print('Pr:', res_hex[0:8])
-            print('Msg Identifier:', res_hex[8:16])
-            print('Actual Msg:', res_hex[16:], '\n')
+            print('Duplicate Pr:', res_hex[0:8], '\n')
             #time.sleep(0.1)
             continue
         else:
             Pr_l.append(rec_pr)
         
-        # Store received messages in a dictionary [key: msg_identifier, value: msg]
+        # Store received messages in a dictionary (key: msg, value: [msg_identifier])
         #msg = res_hex[16:]
         msg = res[8:]
         msg_len = len(msg)
         msg_id = res_hex[8:16]
-        if msg in msg_dict.values():
-            print('----- Duplicate Message! -----')
+        if msg in msg_dict.keys():
+            print('---------- Duplicate Message! ----------')
             print('Last Meassge Received:', res)
             print('Hex res:', res_hex)
             print('Pr:', res_hex[0:8])
-            print('Msg Identifier:', res_hex[8:16])
+            print('Msg ID:', res_hex[8:16])
+            print('Msg ID int:', int(res_hex[8:16],16))
+            print('Msg Length:', msg_len)
             print('Actual Msg:', res_hex[16:], '\n')
+            msg_dict[msg].append(int(msg_id,16))
             continue
         else:
             id_l.append(msg_id)
             id_l_int.append(int(msg_id,16))
             msg_len_l.append(msg_len)
-            msg_dict[msg_id] = msg
+            msg_dict[msg] = []
+            msg_dict[msg].append(int(msg_id,16))
         
         # Print responses
         print('Received:', res)
@@ -100,13 +100,13 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
     except:
         print('----- Socket Closing Failed! -----')
 
-    final_msg = ''
-    for key in sorted(msg_dict):
-        final_msg = final_msg + msg_dict[key].decode('utf-8')
+    # final_msg = ''
+    # for key in sorted(msg_dict):
+    #     final_msg = final_msg + msg_dict[key].decode('utf-8')
 
     print('Pr list:', Pr_l)
     print('Lengh of messages:', msg_len_l)
     print('Message ID list:', id_l)
     print('Message ID list int format:', id_l_int)
     print('Message dictionary:', msg_dict)
-    print('Final message:', final_msg)
+    #print('Final message:', final_msg)
