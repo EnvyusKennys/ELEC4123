@@ -15,11 +15,15 @@ class Server():
 
     def GetMessage(self):
         c = Client()
-        msg = c.Run()
+        msg = c.Run()  # client request for once, appended in to the pkt list
         self.Pkt.append(msg)
 
+        # check if EOF < 5 (create self.EOF_Pkts)
+        # Append self.variable
+
     def Reconstruct(self):
-        return
+        self.res_msg = ''
+        return self.res_msg
 
     def Post(self):
 
