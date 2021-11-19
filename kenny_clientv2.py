@@ -5,13 +5,10 @@ ELEC4123 DP - Network Task Client
 >>> Guxi Liu (z5210591)
 >>> Jun Han (z5206270)
 '''
-import socket
 import time
-from struct import*
-import select
-import random
-from typing import final
+import socket
 import requests
+from struct import*
 
 # The server's IP address and port number
 HOST = '149.171.36.192'
