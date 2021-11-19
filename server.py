@@ -1,56 +1,49 @@
-# python3
+# draft for control server
 
 import socket
-import select
-import random
 import requests
+from client import Client
 
 
 class Server():
-
     def __init__(self):
+        self.Pkt = []
+        self.httpStatus = 200
         self.IP = '149.171.36.192'
-        self.local = '127.0.0.1'
-        self.port = 4000
-        self.snoop = 8189
         self.http = 8190
-        self.pr = '00000100'
+        self.res_msg = ''
 
-    def Run(self):
-        s1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s1.bind((self.local, self.port))
-        s1.listen(5)
+    def GetMessage(self):
+        c = Client()
+        msg = c.Run()
+        self.Pkt.append(msg)
 
-        while True:
-            conn, addr = s1.accept()
-            print(addr, "has been connected")
+    def Reconstruct(self):
+        return
 
-            try:
-                s2 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-                s2.connect((self.IP, self.snoop))
-                print("Socket connected.")
-            except s2.error as err:
-                print('Socket failed.')
+    def Post(self):
 
-            sr = '00000008'
-            request = sr + self.pr
+        while self.httpStatus == 200 or self.httpStatus == 406:
 
-            s2.send(request.encode('utf-8'))
-            while True:
-                ready = select.select([s2], [], [], 10)
-                if ready[0]:
-                    data = s2.recv(1024)
-                    data = data.hex()
-                    print(str(data))
+            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            s.connect((self.IP, self.http))
+            header = 'POST /session HTTP/1.1\r\n'
+            host = 'HOST: ' + self.IP + ":8190\r\n"
+            contentlength = 'Content-Length: ' + \
+                str(len(self.res_msg)) + '\r\n\r\n'
+            data = header + host + contentlength + self.res_msg
 
-            s2.close()
+            s.sendall(str.encode(data))
+            status = s.recv(4096)
 
-        s1.close()
-
-    # def Post(self):
-    #     s = self.sock
-    #     s.connect((self.IP, self.http))
-
-
-s = Server()
-s.Run()
+            if "200" in status.decode():
+                httpStatus = 200
+                print('Post success.')
+            elif "406" in status.decode():
+                httpStatus = 406
+                print('Post failed.')
+            elif "205" in status.decode():
+                httpStatus = 205
+                print('Message revocered.')
+            else:
+                print('Unexpected status.')
