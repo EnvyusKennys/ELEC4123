@@ -100,10 +100,18 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
     whole_msg_len = len(msg_dict)
     for id in msg_dict.keys():
         msg_id_int = int(id,16)
-        mod_id = msg_id_int%whole_msg_len
-        if mod_id == 0:
-            mod_id = whole_msg_len
-        msg_position[mod_id] = id
+        # When whole msg length is longer than msg_id, mod operation will not work
+        if whole_msg_len > msg_id_int:
+            mod_id = msg_id_int - whole_msg_len
+            if (whole_msg_len)%(msg_id_int) == 0:
+                mod_id = whole_msg_len
+            msg_position[mod_id] = id
+        # When whole msg length is shorter than msg_id, use mod operation
+        else:
+            mod_id = (msg_id_int)%(whole_msg_len)
+            if mod_id == 0:
+                mod_id = whole_msg_len
+            msg_position[mod_id] = id
 
     final_msg = ''
     for position in sorted(msg_position):
