@@ -6,6 +6,7 @@ ELEC4123 DP - Network Task Client
 >>> Jun Han (z5206270)
 '''
 import socket
+import random
 from struct import*
 
 # The server's IP address and port number
@@ -23,7 +24,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         print('----- Socket Connection Failed! -----')
 
     print('3. Sending snoop request & Receiving message from the server.')
-    Sr = 19
+    # Sr is a random number between 10-20
+    Sr = random.randint(10, 20)
+    print('Sr is:', Sr)
     msg_repeated = 0
     Pr_l = []
     id_l = []
@@ -40,7 +43,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         res_hex = res.hex()
         # Get the same message for at least 5 times
         if res_hex.endswith('04'):
-            if msg_repeated == 5:
+            if msg_repeated == 3:
                 print('----- Five [\x04] received, Break For-loop! ------\n')
                 break
             else:
@@ -107,6 +110,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
         original_id = msg_position[position]
         final_msg = final_msg + msg_dict[original_id].decode('utf-8')
 
+    print('Sr is:', Sr)
     print('Pr list:', Pr_l)
     print('Lengh of messages:', msg_len_l)
     print('Message ID list:', id_l)
