@@ -4,7 +4,6 @@ import socket
 import requests
 from client import Client
 
-
 class Server():
     def __init__(self):
         self.msg_dict = {}
@@ -45,7 +44,7 @@ class Server():
     def Post(self):
 
         while self.httpStatus == 200 or self.httpStatus == 406:
-            
+
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             s.connect((self.IP, self.http))
             header = 'POST /session HTTP/1.1\r\n'
@@ -65,7 +64,7 @@ class Server():
                 print('Post failed.')
             elif "205" in status.decode():
                 httpStatus = 205
-                print('Message revocered.')
+                print('Message recovered.')
             else:
                 print('Unexpected status.')
 
