@@ -116,9 +116,10 @@ class Server():
                     print('<<< Post Failed! >>>\n')
                 elif "205" in status.decode():
                     httpStatus = 205
-                    print('<<< All Messages Recovered! >>>')
+                    print('<<< All Messages Recovered! >>>\n')
+                    break
                 else:
-                    print('<<< Unexpected Status! >>>')
+                    print('<<< Unexpected Status! >>>\n')
                     break
                 self.msg_no+=1
             
