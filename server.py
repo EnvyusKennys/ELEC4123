@@ -15,7 +15,7 @@ class Server():
     def GetMessage(self):
         c = Client()
         self.msg_dict = c.Run()
-
+        
     def Reconstruct(self):
         # Mod [msg_id] with [whole_message_length] to get the position of the this msg
         pkt_per_msg = len(self.msg_dict)
