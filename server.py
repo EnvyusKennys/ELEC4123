@@ -109,18 +109,16 @@ class Server():
                 status = s.recv(4096)
 
                 if "200" in status.decode():
-                    httpStatus = 200
+                    self.httpStatus = 200
                     print('<<< Post Success! >>>\n')
                 elif "406" in status.decode():
-                    httpStatus = 406
+                    self.httpStatus = 406
                     print('<<< Post Failed! >>>\n')
                 elif "205" in status.decode():
-                    httpStatus = 205
+                    self.httpStatus = 205
                     print('<<< All Messages Recovered! >>>\n')
-                    break
                 else:
                     print('<<< Unexpected Status! >>>\n')
-                    break
                 self.msg_no+=1
             
             # Closing client socket
