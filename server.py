@@ -30,7 +30,7 @@ class Server():
             # Get the same message for at least 3 times to make sure all msg received
             if res_hex.endswith('04'):
                 if self.msg_repeated == 3:
-                    print('<<< SUCCESS: All Message Packets Received. Client Stop! >>>\n')
+                    print('<<< SUCCESS: All Message Packets Received. Client Stop! >>>')
                     break
                 else:
                     self.msg_repeated+=1
@@ -110,15 +110,15 @@ class Server():
 
                 if "200" in status.decode():
                     httpStatus = 200
-                    print('Post success.')
+                    print('<<< Post Success! >>>\n')
                 elif "406" in status.decode():
                     httpStatus = 406
-                    print('Post failed.')
+                    print('<<< Post Failed! >>>\n')
                 elif "205" in status.decode():
                     httpStatus = 205
-                    print('Message recovered.')
+                    print('<<< All Messages Recovered! >>>')
                 else:
-                    print('Unexpected status.')
+                    print('<<< Unexpected Status! >>>')
                     break
                 self.msg_no+=1
             
