@@ -1,7 +1,10 @@
-# python3
-
-import socket
-import random
+'''
+ELEC4123 DP - Network Task Client
+>>> Yijie Shen (z5211003)
+>>> Zhelin Jia (z5140809)
+>>> Guxi Liu (z5210591)
+>>> Jun Han (z5206270)
+'''
 from struct import *
 
 class Client():

@@ -1,8 +1,12 @@
-# draft for control server
-
+'''
+ELEC4123 DP - Network Task Control Server
+>>> Yijie Shen (z5211003)
+>>> Zhelin Jia (z5140809)
+>>> Guxi Liu (z5210591)
+>>> Jun Han (z5206270)
+'''
 import socket
 import random
-import requests
 from client import Client
 
 class Server():
