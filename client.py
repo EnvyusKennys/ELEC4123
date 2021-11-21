@@ -20,8 +20,7 @@ class Client():
             except s.error as err:
                 print('---------- Socket Connection Failed! ----------\n')
 
-            # Sending snoop request & Receiving message from the server
-            # Sr is a random number between 10-20
+            # Sending snoop request & Receiving msg from server with Sr = random number between 10-20
             Sr = random.randint(10, 20)
             multi_dup_check = 0
             msg_repeated = 0
