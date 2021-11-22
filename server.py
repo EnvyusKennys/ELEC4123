@@ -26,7 +26,7 @@ class Server():
 
     def GetMessage(self, client_socket, Sr, Pr):
         # Send snoope request with differnt [Pr] to get differnt responses
-        for Pr in range(1,2000):
+        for Pr in range(1,5000):
             # One client connet and get one response
             client1 = Client(client_socket, Sr, Pr, self.IP, self.snoop)
             res = client1.Run()
