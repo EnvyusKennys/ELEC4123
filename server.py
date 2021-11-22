@@ -50,14 +50,14 @@ class Server():
             # Get rid of duplicate msg
             if msg in self.msg_dict.values():
                 # If 10 consecutive dup msgs received -> Sr is a mutiple of pkt/msg -> change Sr
-                multi_dup_check+=1
-                if multi_dup_check == 10:
+                self.multi_dup_check+=1
+                if self.multi_dup_check == 10:
                     print(f'<<< WARNING: Bad Sr [{Sr}] Detected. Sr Changed to [{Sr+1}] >>>\n')
                     Sr+=1
                 continue
             else:
                 # No consecutive dup msgs found, store msg
-                multi_dup_check = 0
+                self.multi_dup_check = 0
                 self.msg_dict[msg_id] = msg
         
     def Reconstruct(self):
